@@ -150,11 +150,11 @@ const Index = () => {
       type: "pdf"
     },
     {
-      title: "Qatar Residence Permit (QID)",
+      title: "Capgemini - Full Stack Developer",
       category: "Professional",
-      year: "2016-2018",
-      content: "Maintained valid Qatar Residence Permit (QID) for professional employment during international assignment. This demonstrates compliance with international work regulations and successful professional engagement in the Middle East.",
-      file: "/testimonials/QID_2016-2017.pdf",
+      year: "2022-Present",
+      content: "Currently employed as Full Stack Developer at Capgemini Technology Services India Limited since February 28, 2022. Engaged in full-stack development projects, utilizing modern web technologies and frameworks to deliver robust software solutions for clients.",
+      file: "/testimonials/3_Year_Anniversary-Ammar-Capgemini.pdf",
       type: "pdf"
     }
   ];
