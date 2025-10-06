@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Download, Mail, Phone, MapPin, Github, Briefcase, GraduationCap } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Download, Mail, Phone, MapPin, Github, Briefcase, GraduationCap, Award, MessageSquare, ExternalLink } from "lucide-react";
+import { useState } from "react";
 
 const Index = () => {
   const handleDownloadResume = () => {
@@ -84,6 +86,39 @@ const Index = () => {
       year: "2011"
     }
   ];
+
+  const certificates = [
+    { title: "Eclipse IDE for Beginner", platform: "Udemy", file: "/certificates/Eclipse_IDE_for_Beginner.pdf" },
+    { title: "Angular - The Complete Guide", platform: "Udemy", file: "/certificates/Angular_Udemy.pdf" },
+    { title: "Jira Fundamentals", platform: "Coursera", file: "/certificates/Jira_Coursera.pdf" },
+    { title: "Getting Started with Jira", platform: "Udemy", file: "/certificates/Jira_Udemy.pdf" },
+    { title: "Liferay DXP Fundamentals", platform: "Udemy", file: "/certificates/Liferay_DXP_Udemy.pdf" },
+    { title: "SonarQube for Developers", platform: "Udemy", file: "/certificates/SonarQube_Udemy.pdf" },
+    { title: "Supermarket App using OOP Features", platform: "Certificate", file: "/certificates/Supermarket_App_OOP.pdf" },
+    { title: "JavaServer Pages (JSP)", platform: "Coursera", file: "/certificates/JSP_Coursera.pdf" },
+    { title: "Lambda Expression in Java", platform: "Coursera", file: "/certificates/Lambda_Expression_Coursera.pdf" },
+    { title: "Multithreaded Java Application", platform: "Coursera", file: "/certificates/Multithread_App_Coursera.pdf" }
+  ];
+
+  const testimonials = [
+    {
+      title: "Primary School Achievement",
+      category: "Academic",
+      content: "Placeholder testimonial content - Please provide your actual testimonial details."
+    },
+    {
+      title: "College Recognition",
+      category: "Academic",
+      content: "Placeholder testimonial content - Please provide your actual testimonial details."
+    },
+    {
+      title: "Professional Achievement",
+      category: "Professional",
+      content: "Placeholder testimonial content - Please provide your actual testimonial details."
+    }
+  ];
+
+  const [selectedTestimonial, setSelectedTestimonial] = useState<typeof testimonials[0] | null>(null);
 
   return (
     <div className="min-h-screen bg-background">
@@ -225,6 +260,117 @@ const Index = () => {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Certificates Section */}
+      <section className="py-16 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-8 text-center flex items-center justify-center gap-3">
+            <Award className="h-8 w-8 text-primary" />
+            My Certificates
+          </h2>
+          <Card className="shadow-elegant mb-8">
+            <CardContent className="p-8 text-center">
+              <p className="text-lg text-muted-foreground mb-4">
+                Professional Development Certificates
+              </p>
+              <p className="text-muted-foreground mb-6">
+                Certified in Java, Jira, Eclipse, Visual Studio Code, Angular, Github, Node.js, JSP, SonarQube, and more.
+              </p>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="shadow-elegant">
+                    <Award className="h-5 w-5 mr-2" />
+                    Click to View Certificates
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl">Professional Certificates</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid md:grid-cols-2 gap-4 mt-4">
+                    {certificates.map((cert, index) => (
+                      <Card key={index} className="shadow-md hover:shadow-xl transition-shadow">
+                        <CardContent className="p-4">
+                          <div className="flex justify-between items-start gap-2 mb-3">
+                            <h3 className="font-semibold text-lg">{cert.title}</h3>
+                            <Badge variant="secondary" className="shrink-0">{cert.platform}</Badge>
+                          </div>
+                          <a 
+                            href={cert.file} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-primary hover:underline"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            View Certificate
+                          </a>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-16 px-6 bg-secondary/30">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold mb-8 text-center flex items-center justify-center gap-3">
+            <MessageSquare className="h-8 w-8 text-primary" />
+            My Testimonials
+          </h2>
+          <Card className="shadow-elegant mb-8">
+            <CardContent className="p-8 text-center">
+              <p className="text-lg text-muted-foreground mb-4">
+                Academic and Professional Achievements
+              </p>
+              <p className="text-muted-foreground mb-6">
+                Testimonials Archive: Academic and Professional Achievements from Primary Schooling to Current Position including Visas & Residence Permit Card.
+              </p>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="lg" className="shadow-elegant">
+                    <MessageSquare className="h-5 w-5 mr-2" />
+                    Click to View Testimonials
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl">Testimonials & Achievements</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid md:grid-cols-2 gap-4 mt-4">
+                    {testimonials.map((testimonial, index) => (
+                      <Dialog key={index}>
+                        <DialogTrigger asChild>
+                          <Card className="shadow-md hover:shadow-xl transition-shadow cursor-pointer">
+                            <CardContent className="p-4">
+                              <Badge variant="outline" className="mb-2">{testimonial.category}</Badge>
+                              <h3 className="font-semibold text-lg">{testimonial.title}</h3>
+                              <p className="text-sm text-muted-foreground mt-2">Click to view details</p>
+                            </CardContent>
+                          </Card>
+                        </DialogTrigger>
+                        <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle>{testimonial.title}</DialogTitle>
+                          </DialogHeader>
+                          <div className="py-4">
+                            <Badge variant="secondary" className="mb-4">{testimonial.category}</Badge>
+                            <p className="text-muted-foreground">{testimonial.content}</p>
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    ))}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
