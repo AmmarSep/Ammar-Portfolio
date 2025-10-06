@@ -102,19 +102,60 @@ const Index = () => {
 
   const testimonials = [
     {
-      title: "Primary School Achievement",
+      title: "10th Standard - Matriculation Certificate",
       category: "Academic",
-      content: "Placeholder testimonial content - Please provide your actual testimonial details."
+      year: "1998-2009",
+      content: "Successfully completed Matriculation School Leaving Public Examination from DONBOSCO MS TIRUNELVELI with excellent marks. Scored 462/500 with strong performance across all subjects including Tamil (90/100), English (83/100), Mathematics (97/100), and Science (96/100).",
+      file: "/testimonials/10th_certificate_1998-2009.jpg",
+      type: "image"
     },
     {
-      title: "College Recognition",
+      title: "12th Standard - Higher Secondary Certificate",
       category: "Academic",
-      content: "Placeholder testimonial content - Please provide your actual testimonial details."
+      year: "2009-2011",
+      content: "Completed Higher Secondary Public Examination from Rosemary Mat HSS Palayamkottai with outstanding performance. Achieved 1120/1200 marks with excellent scores in core subjects: Physics (193/200), Chemistry (192/200), Biology (193/200), and Mathematics (181/200).",
+      file: "/testimonials/12th_certificate_2009-2011.jpg",
+      type: "image"
     },
     {
-      title: "Professional Achievement",
+      title: "Bachelor of Engineering Degree",
+      category: "Academic",
+      year: "2011-2015",
+      content: "Graduated with Bachelor of Engineering in Mechanical Engineering from Anna University through National Engineering College, Kovilpatti. Secured FIRST CLASS at the examination held in April 2015, demonstrating strong technical foundation and academic excellence.",
+      file: "/testimonials/Degree_Certificate_2011-2015.pdf",
+      type: "pdf"
+    },
+    {
+      title: "International Work Experience - Qatar",
       category: "Professional",
-      content: "Placeholder testimonial content - Please provide your actual testimonial details."
+      year: "2015-2019",
+      content: "Worked internationally in Qatar with proper work authorization. Obtained work visa and residence permits (QID) for professional employment, gaining valuable international work experience in the Middle East region.",
+      file: "/testimonials/VISA_2015.pdf",
+      type: "pdf"
+    },
+    {
+      title: "Asta Systech - Web Developer",
+      category: "Professional",
+      year: "2019-2021",
+      content: "Served as Web Developer at Asta Systech from December 21, 2019 to July 31, 2021. Worked in the IT department, developing web applications and contributing to various development projects. Gained practical experience in full-stack web development technologies.",
+      file: "/testimonials/Asta_Systech_Experience_2019-2021.pdf",
+      type: "pdf"
+    },
+    {
+      title: "Destar Consulting / Accenture - Software Engineer",
+      category: "Professional",
+      year: "2021-2022",
+      content: "Worked as Software Engineer at Destar Consulting Private Limited from August 4, 2021 to February 25, 2022. Deployed at client Accenture Solutions Private Limited, contributing to enterprise-level software development projects and gaining exposure to consulting industry practices.",
+      file: "/testimonials/Relieving_Experience_Letter_2021-2022.pdf",
+      type: "pdf"
+    },
+    {
+      title: "Qatar Residence Permit (QID)",
+      category: "Professional",
+      year: "2016-2018",
+      content: "Maintained valid Qatar Residence Permit (QID) for professional employment during international assignment. This demonstrates compliance with international work regulations and successful professional engagement in the Middle East.",
+      file: "/testimonials/QID_2016-2017.pdf",
+      type: "pdf"
     }
   ];
 
@@ -349,19 +390,45 @@ const Index = () => {
                         <DialogTrigger asChild>
                           <Card className="shadow-md hover:shadow-xl transition-shadow cursor-pointer">
                             <CardContent className="p-4">
-                              <Badge variant="outline" className="mb-2">{testimonial.category}</Badge>
-                              <h3 className="font-semibold text-lg">{testimonial.title}</h3>
-                              <p className="text-sm text-muted-foreground mt-2">Click to view details</p>
+                              <div className="flex justify-between items-start gap-2 mb-2">
+                                <Badge variant="outline">{testimonial.category}</Badge>
+                                <Badge variant="secondary" className="text-xs">{testimonial.year}</Badge>
+                              </div>
+                              <h3 className="font-semibold text-lg mb-2">{testimonial.title}</h3>
+                              <p className="text-sm text-muted-foreground line-clamp-2">{testimonial.content}</p>
+                              <p className="text-xs text-primary mt-2 font-medium">Click to view details</p>
                             </CardContent>
                           </Card>
                         </DialogTrigger>
-                        <DialogContent>
+                        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
                           <DialogHeader>
-                            <DialogTitle>{testimonial.title}</DialogTitle>
+                            <DialogTitle className="text-xl">{testimonial.title}</DialogTitle>
                           </DialogHeader>
-                          <div className="py-4">
-                            <Badge variant="secondary" className="mb-4">{testimonial.category}</Badge>
-                            <p className="text-muted-foreground">{testimonial.content}</p>
+                          <div className="py-4 space-y-4">
+                            <div className="flex gap-2">
+                              <Badge variant="secondary">{testimonial.category}</Badge>
+                              <Badge variant="outline">{testimonial.year}</Badge>
+                            </div>
+                            <p className="text-muted-foreground leading-relaxed">{testimonial.content}</p>
+                            {testimonial.type === 'image' ? (
+                              <div className="mt-4 border rounded-lg overflow-hidden">
+                                <img 
+                                  src={testimonial.file} 
+                                  alt={testimonial.title}
+                                  className="w-full h-auto"
+                                />
+                              </div>
+                            ) : (
+                              <a 
+                                href={testimonial.file} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-primary hover:underline mt-4"
+                              >
+                                <ExternalLink className="h-4 w-4" />
+                                View Document
+                              </a>
+                            )}
                           </div>
                         </DialogContent>
                       </Dialog>
