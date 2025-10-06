@@ -3,6 +3,8 @@
 ## Project info
 
 **URL**: https://lovable.dev/projects/45e8def8-6921-4461-8bbb-c213e5df6642
+**URL**: https://ammarsep.github.io/Ammar-Portfolio/
+
 
 ## How can I edit this code?
 
